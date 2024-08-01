@@ -215,9 +215,6 @@ useEffect(()=>{
       setScrollTops(window.scrollY);
     }
     if(window.scrollY + tg.viewportStableHeight >= $(document).height()-30 && !loadings) {
-      console.log(window.scrollY);
-      console.log($("body").height());
-      console.log($(document).height()-30);
       if(!scrollBottomRef.current){
         if(listedslide){
           setScrollBottom(true);
@@ -242,12 +239,14 @@ const loaded = () => {
   xelemids[activeTab]++;
   tek = photos[activeTab].photos.slice(xelemids[activeTab]*8-8, photos[activeTab].photos.length >= 8*xelemids[activeTab] ? 8*xelemids[activeTab] : photos[activeTab].photos.length);
   shuffle(tek);
+  console.log(tek);
   photos_[activeTab].photos = [...photos_[activeTab].photos, ...tek];
   addImages(photos[activeTab].path,tek,true);
     if(photos_[activeTab].photos.length < 8 * xelemids[activeTab]) {
       setShowbtn(false);
       showbtnarr[activeTab] = false;
     }
+    setScrollBottom(false);
     loadings = false;
   }
 

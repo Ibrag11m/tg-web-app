@@ -83,6 +83,7 @@ body{
 	/*margin: 0 auto;
 	width: 80%;
 	height: 52px;*/
+  border: none;
 	position: fixed;
   bottom: 13%;
   left: 10%;
