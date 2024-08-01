@@ -3,7 +3,7 @@ import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import Header from './components/Header/Header';
 import $ from "jquery";
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 function App() {
   const {onToggleButton, tg} = useTelegram();
 
@@ -67,7 +67,7 @@ const addImages = (path, imgs,append=false) => {
   let imgs_elems = append ? showedPhotosConfigs : [];
 
   let sex = "W";
-  imgs.map(x => {
+  imgs.map(x => (
     if(x)
       if(path !== 'none'){
         imgs_elems.push(
@@ -86,7 +86,7 @@ const addImages = (path, imgs,append=false) => {
           }
         )
       }
-  })
+  ))
   let top = 0;
   let prevImg = append ? showedPhotos[showedPhotos.length-1] : null;
   let imgs_elements = append ? showedPhotos : [];
