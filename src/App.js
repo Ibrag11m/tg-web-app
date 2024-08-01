@@ -79,7 +79,7 @@ useEffect(() => {
 
 
 const select =(url,ids) =>{
-  setActiveTab(0);
+  console.log(url);
 }
 const addImages = (path, imgs,append=false) => {
   let columns = 2;
