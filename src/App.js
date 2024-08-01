@@ -69,6 +69,8 @@ useEffect(() => {
     }
     console.log('arrs2');
     console.log(arrs2);
+    console.log('xelemids');
+    console.log(xelemids);
     //arrs2[0] = arrs2[0].concat(arrs2[1]);
     setPhotos_(arrs2);
   }
@@ -237,7 +239,7 @@ const loaded = () => {
   let tek = '';
   loadings = true;
   xelemids[activeTab]++;
-  console.log(xelemids);
+  console.log(xelemids[activeTab]);
   tek = photos[activeTab].photos.slice(xelemids[activeTab]*8-8, photos[activeTab].photos.length >= 8*xelemids[activeTab] ? 8*xelemids[activeTab] : photos[activeTab].photos.length);
   shuffle(tek);
   console.log(tek);
