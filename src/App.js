@@ -294,7 +294,7 @@ const loaded = () => {
       {step === 1 &&
           <div className="fle" style={{rowGap:40,justifyContent:"center",flexBasis:"90%"}}>
             <span style={{maxWidth: 400,textAlign:"center",whiteSpace: 'pre-line'}} level={"2"}>
-              {textprogress}
+              Загружаем фото...\n\Это не долго
             </span>
           </div>
       }
