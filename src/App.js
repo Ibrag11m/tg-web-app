@@ -206,7 +206,9 @@ useEffect(()=>{
       addImages(photos_[activeTab].path, activePhotos);
   }
 },[photos_])
-
+useEffect(()=>{
+  console.log(tg.viewportStableHeight)
+},[tg.viewportStableHeight])
 useEffect(()=>{
   $( "html" ).on( "scroll", function() {
     console.log($("html").scrollTop());
