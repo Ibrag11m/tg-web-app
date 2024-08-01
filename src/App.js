@@ -174,6 +174,7 @@ useEffect(()=>{
     //arrs2[0] = arrs2[0].concat(arrs2[1]);
     setPhotos_(arrs2);
   }
+  console.log(photos_);
   let activePhotos = photos_[activeTab].photos;
   addImages(photos_[activeTab].path, activePhotos);
 },[photos])
