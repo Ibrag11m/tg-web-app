@@ -8,9 +8,48 @@ body{
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
 }
-
-.my-imgs{
+.cst-but{
+  flex: 1;
+  width: 200px;
+  height: 35px;
+  min-width: 150px;
+  background-color: transparent !important;
+  color: var(--tg-theme-text-color) !important;
+}
+.cst-but.active{
+  background-color: #F4BC3C !important;
+  color: white !important;
+}
+/*.my-imgs{
 	overflow: scroll;
+}*/
+.hidden-but{
+  visibility: hidden !important;
+  pointer-events: none;
+}
+
+.app-loader{
+	visibility: visible;
+	text-align: center;
+	margin-bottom: 15px;
+}
+.loader-icon{
+	display: inline-block;
+  border: 2px solid rgba(247, 221, 161,.3);
+  border-top: 2px solid #F4BC3C;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: a .75s linear infinite;
+}
+@keyframes a {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(1turn)
+    }
 }
 
 .activeTab{
@@ -38,4 +77,17 @@ body{
 .img_end{
   opacity: 1;
   transform: translateY(0)
+}
+.loadgo{
+	/*margin: 0 auto;
+	width: 80%;
+	height: 52px;*/
+	position: fixed;
+  bottom: 13%;
+  left: 10%;
+  width: 80%;
+  margin: 0 auto;
+	height: 52px;
+	opacity: 0;
+	transform: translateY(200px);
 }

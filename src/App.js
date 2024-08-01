@@ -12,9 +12,11 @@ function App() {
   const [showedPhotos, setShowedPhotos] = useState([]);
   const [showedPhotosConfigs, setShowedPhotosConfigs] = useState([]);
   const [photos_, setPhotos_] = useState(null);
+  const [showbtn, setShowbtn] = useState(true);
   const defaultLink = "https://xx10.ru/photo2/images";
   let showbtnarr = [];
   let xelemids = [];
+  let loadings = false;
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -200,6 +202,20 @@ useEffect(()=>{
   }
 },[photos_])
 
+const loaded = () => {
+  let tek = '';
+  loadings = true;
+  xelemids[activeTab]++;
+  tek = photos[activeTab].photos.slice(xelemids[activeTab]*8-8, photos[activeTab].photos.length >= 8*xelemids[activeTab] ? 8*xelemids[activeTab] : photos[activeTab].photos.length);
+  shuffle(tek);
+  photos_[activeTab].photos = [...photos_[activeTab].photos, ...tek];
+  addImages(photos[activeTab].path,tek,true);
+    if(photos_[activeTab].photos.length < 8 * xelemids[activeTab]) {
+      setShowbtn(false);
+      showbtnarr[activeTab] = false;
+    }
+    loadings = false;
+  }
 
   return (
     <div className="App">
@@ -209,6 +225,8 @@ useEffect(()=>{
             <div className={`activeTab activeTab-${k}`}><div className="my-imgs"></div></div>
           ) : <div></div>
       })}
+      <div className={`app-loader ${loadings ? "" : "hidden-but"}`}><span className="loader-icon"></span></div>
+      <Button onClick={loaded} className={`cst-but active loadgo`}>Загрузить еще</Button>
     </div>
   );
 }
