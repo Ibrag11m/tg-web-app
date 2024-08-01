@@ -187,6 +187,9 @@ img.addEventListener('click', function(){
   //let height = defaultImageWidth * imgs_elems[imgs_elems.length-1].aspect;
   $(container).css({height:maxHg+100});
 }
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};
 
 useEffect(()=>{
   if(photos_ !== null){
