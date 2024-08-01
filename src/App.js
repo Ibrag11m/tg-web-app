@@ -44,123 +44,125 @@ useEffect(() => {
 const select =(url,ids) =>{
   setActiveTab(0);
 }
-const addImages = (path, imgs,append=false) => {
-  let columns = 2;
-  if(window.innerWidth <= 600){
-  columns = 2;
-  }else{
-  columns = 4;
-  }
-  let gapBetweenVertical = 5;
-  let gapBetweenHorizontal = 5;
-  let gapLeft = 10;
-  let gapRight = 10;
-  let whatMinusFromWidth = gapBetweenVertical*(columns-1)+gapLeft+gapRight;
-  let defaultImageWidth = ((window.innerWidth-whatMinusFromWidth)/columns);
-  let container = $(`.activeTab-${activeTab} .my-imgs`);
-  let left__  = 0;
-  if(activeTab > 0)
-      left__ = container[0].offsetWidth * activeTab;
-  if(!append) {
-      container.html("")
-  }
-  let imgs_elems = append ? showedPhotosConfigs : [];
 
-  let sex = "W";
-  imgs.forEach(x => {
-    if(x)
-      if(path !== 'none'){
-        imgs_elems.push(
-          {
-            src: path ? `${defaultLink}/${sex}/${path}/${x.name}` : `${defaultLink}/${sex}/${x.name}`,
-            aspect: x.aspect,
-            id: x.id
-          }
-        )
-      }else{
-        imgs_elems.push(
-          {
-            src: path ? `${defaultLink}/${sex}/${x.name}` : `${defaultLink}/${sex}/${x.name}`,
-            aspect: x.aspect,
-            id: x.id
-          }
-        )
-      }
-  })
-  let top = 0;
-  let prevImg = append ? showedPhotos[showedPhotos.length-1] : null;
-  let imgs_elements = append ? showedPhotos : [];
-  //let gap = 50;
-
-  let columnsArr = new Array(columns).fill(0)
-  let ik = 0;
-  imgs_elems.forEach((x, k) => {
-      if(ik>=columns) {
-          columnsArr.forEach((x,k)=>{
-              columnsArr[k] = x+gapBetweenHorizontal;
-          })
-          ik = 0;
-      }
-      columnsArr[ik] += defaultImageWidth*x.aspect
-
-      if(append && k < showedPhotos.length) {
-          ik++;
-          return;
-      }
-      let img = document.createElement('img');
-      img.src = x.src;
-      img.className = "img_start";
-      img.style.width = defaultImageWidth+"px";
-      img.style.left = left__+gapLeft+"px";
-img.addEventListener('click', function(){
-  select(x.src, x.id);
-  return false;
-});
-      if(prevImg){
-          //let rect = prevImg.getBoundingClientRect();
-          let left = $(prevImg).position().left+defaultImageWidth+gapBetweenVertical;
-          if(k >= columns){
-              //rect = imgs_elements[k-(columns)].getBoundingClientRect();
-              //let aspect = imgs_elems[k-columns].aspect;
-              top = 0;
-              for(let i = 1;i<1000;i++){
-                  let itr = k-(columns*i);
-                  if(itr < 0)
-                      break;
-                  top += (defaultImageWidth*imgs_elems[k-(columns*i)].aspect)+gapBetweenHorizontal
-              }
-              if(top === 0){
-                  top = (defaultImageWidth*imgs_elems[k-columns].aspect)+gapBetweenHorizontal;
-              }
-              if(k % columns === 0) {
-                  left = $(imgs_elements[k - (columns)]).position().left;
-              }
-          }
-          img.style.top = top+"px"
-          img.style.left = left+"px"
-      }
-      prevImg = img;
-      imgs_elements.push(img);
-      $(container).append(img);
-
-      ik++;
-  })
-  setShowedPhotos([...imgs_elements]);
-  setShowedPhotosConfigs([...imgs_elems]);
-
-  imgs_elements.forEach((x,k)=>{
-      $(x).addClass("img_transform")
-      setTimeout(()=>{
-          $(x).addClass("img_end")
-      },200)
-  })
-  let maxHg = columnsArr.max();
-  top = parseInt($(imgs_elements[imgs_elements.length-1]).css("top").split("px"));
-  //let height = defaultImageWidth * imgs_elems[imgs_elems.length-1].aspect;
-  $(container).css({height:maxHg+100});
-}
 
 useEffect(()=>{
+  const addImages = (path, imgs,append=false) => {
+    let columns = 2;
+    if(window.innerWidth <= 600){
+    columns = 2;
+    }else{
+    columns = 4;
+    }
+    let gapBetweenVertical = 5;
+    let gapBetweenHorizontal = 5;
+    let gapLeft = 10;
+    let gapRight = 10;
+    let whatMinusFromWidth = gapBetweenVertical*(columns-1)+gapLeft+gapRight;
+    let defaultImageWidth = ((window.innerWidth-whatMinusFromWidth)/columns);
+    let container = $(`.activeTab-${activeTab} .my-imgs`);
+    let left__  = 0;
+    if(activeTab > 0)
+        left__ = container[0].offsetWidth * activeTab;
+    if(!append) {
+        container.html("")
+    }
+    let imgs_elems = append ? showedPhotosConfigs : [];
+  
+    let sex = "W";
+    imgs.forEach(x => {
+      if(x)
+        if(path !== 'none'){
+          imgs_elems.push(
+            {
+              src: path ? `${defaultLink}/${sex}/${path}/${x.name}` : `${defaultLink}/${sex}/${x.name}`,
+              aspect: x.aspect,
+              id: x.id
+            }
+          )
+        }else{
+          imgs_elems.push(
+            {
+              src: path ? `${defaultLink}/${sex}/${x.name}` : `${defaultLink}/${sex}/${x.name}`,
+              aspect: x.aspect,
+              id: x.id
+            }
+          )
+        }
+    })
+    let top = 0;
+    let prevImg = append ? showedPhotos[showedPhotos.length-1] : null;
+    let imgs_elements = append ? showedPhotos : [];
+    //let gap = 50;
+  
+    let columnsArr = new Array(columns).fill(0)
+    let ik = 0;
+    imgs_elems.forEach((x, k) => {
+        if(ik>=columns) {
+            columnsArr.forEach((x,k)=>{
+                columnsArr[k] = x+gapBetweenHorizontal;
+            })
+            ik = 0;
+        }
+        columnsArr[ik] += defaultImageWidth*x.aspect
+  
+        if(append && k < showedPhotos.length) {
+            ik++;
+            return;
+        }
+        let img = document.createElement('img');
+        img.src = x.src;
+        img.className = "img_start";
+        img.style.width = defaultImageWidth+"px";
+        img.style.left = left__+gapLeft+"px";
+  img.addEventListener('click', function(){
+    select(x.src, x.id);
+    return false;
+  });
+        if(prevImg){
+            //let rect = prevImg.getBoundingClientRect();
+            let left = $(prevImg).position().left+defaultImageWidth+gapBetweenVertical;
+            if(k >= columns){
+                //rect = imgs_elements[k-(columns)].getBoundingClientRect();
+                //let aspect = imgs_elems[k-columns].aspect;
+                top = 0;
+                for(let i = 1;i<1000;i++){
+                    let itr = k-(columns*i);
+                    if(itr < 0)
+                        break;
+                    top += (defaultImageWidth*imgs_elems[k-(columns*i)].aspect)+gapBetweenHorizontal
+                }
+                if(top === 0){
+                    top = (defaultImageWidth*imgs_elems[k-columns].aspect)+gapBetweenHorizontal;
+                }
+                if(k % columns === 0) {
+                    left = $(imgs_elements[k - (columns)]).position().left;
+                }
+            }
+            img.style.top = top+"px"
+            img.style.left = left+"px"
+        }
+        prevImg = img;
+        imgs_elements.push(img);
+        $(container).append(img);
+  
+        ik++;
+    })
+    setShowedPhotos([...imgs_elements]);
+    setShowedPhotosConfigs([...imgs_elems]);
+  
+    imgs_elements.forEach((x,k)=>{
+        $(x).addClass("img_transform")
+        setTimeout(()=>{
+            $(x).addClass("img_end")
+        },200)
+    })
+    let maxHg = columnsArr.max();
+    top = parseInt($(imgs_elements[imgs_elements.length-1]).css("top").split("px"));
+    //let height = defaultImageWidth * imgs_elems[imgs_elems.length-1].aspect;
+    $(container).css({height:maxHg+100});
+  }
+
   let activePhotos = photos[activeTab].photos;
   addImages(photos[activeTab].path, activePhotos);
 },[photos])
@@ -169,7 +171,7 @@ useEffect(()=>{
   return (
     <div className="App">
       <Header />
-      {photos && photos.length > 0 && photos.map((x, k) => {
+      {photos && photos.length > 0 && photos.forEach((x, k) => {
         if (x.photos.length > 0)
           return activeTab === k ? (
             <div className={`activeTab activeTab-${k}`}><div className="my-imgs"></div></div>
