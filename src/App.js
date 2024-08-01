@@ -207,8 +207,8 @@ useEffect(()=>{
   }
 },[photos_])
 useEffect(()=>{
-  console.log(tg.viewportStableHeight)
-},[tg.viewportStableHeight])
+  console.log(window.Telegram.WebApp.viewportStableHeight)
+},[window.Telegram.WebApp.viewportStableHeight])
 useEffect(()=>{
   $( "html" ).on( "scroll", function() {
     console.log($("html").scrollTop());
