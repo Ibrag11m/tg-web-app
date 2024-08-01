@@ -236,16 +236,17 @@ useEffect(()=>{
 },[])
 
 const loaded = () => {
-  let tek = '';
+  let tek = [];
   loadings = true;
-  setXelemids(xelemids+1);
-  console.log(xelemids);
-  tek = photos[activeTab].photos.slice(xelemids[activeTab]*8-8, photos[activeTab].photos.length >= 8*xelemids[activeTab] ? 8*xelemids[activeTab] : photos[activeTab].photos.length);
+  let xelemidss = xelemids+1;
+  setXelemids(xelemidss);
+  console.log(xelemidss);
+  tek = photos[activeTab].photos.slice(xelemidss*8-8, photos[activeTab].photos.length >= 8*xelemidss ? 8*xelemidss : photos[activeTab].photos.length);
   shuffle(tek);
   console.log(tek);
   photos_[activeTab].photos = [...photos_[activeTab].photos, ...tek];
   addImages(photos[activeTab].path,tek,true);
-    if(photos_[activeTab].photos.length < 8 * xelemids[activeTab]) {
+    if(photos_[activeTab].photos.length < 8 * xelemidss) {
       setShowbtn(false);
       showbtnarr[activeTab] = false;
     }
