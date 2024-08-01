@@ -226,7 +226,7 @@ const loaded = () => {
           ) : <div></div>
       })}
       <div className={`app-loader ${loadings ? "" : "hidden-but"}`}><span className="loader-icon"></span></div>
-      <Button onClick={loaded} className={`cst-but active loadgo`}>Загрузить еще</Button>
+      <button onClick={loaded} className={`cst-but active loadgo`}>Загрузить еще</button>
     </div>
   );
 }
