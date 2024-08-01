@@ -14,6 +14,7 @@ function App() {
   const [photos_, setPhotos_] = useState(null);
   const defaultLink = "https://xx10.ru/photo2/images";
   let showbtnarr = [];
+  let xelemids = [];
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
