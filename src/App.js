@@ -14,6 +14,7 @@ function App() {
   const [photos_, setPhotos_] = useState(null);
   const [showbtn, setShowbtn] = useState(true);
   const [scrollBottom,setScrollBottom] = useState(false);
+  const [scrollTops, setScrollTops] = useState(0);
 	const scrollBottomRef = useRef();
 	scrollBottomRef.current = scrollBottom;
   const defaultLink = "https://xx10.ru/photo2/images";
@@ -210,8 +211,10 @@ useEffect(()=>{
   $( "body" ).on( "scroll", function() {
     if($("body").scrollTop() > 0){
       setScrollTops($("body").scrollTop());
+      console.log($("body").scrollTop());
     }
     if($("body").scrollTop() + $("body").height() >= $(document).height()-30 && !loadings) {
+      console.log('good');
       if(!scrollBottomRef.current){
         if(listedslide){
           setScrollBottom(true);
