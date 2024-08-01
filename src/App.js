@@ -203,14 +203,12 @@ useEffect(()=>{
 
   return (
     <div className="App">
-      <Header />
       {photos_ && photos_.length > 0 && photos_.map((x, k) => {
         if (x.photos.length > 0)
           return activeTab === k ? (
             <div className={`activeTab activeTab-${k}`}><div className="my-imgs"></div></div>
           ) : <div></div>
       })}
-      <button onclick={onToggleButton}>toggle</button>
     </div>
   );
 }

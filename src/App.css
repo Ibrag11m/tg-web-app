@@ -8,3 +8,34 @@ body{
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
 }
+
+.my-imgs{
+	overflow: scroll;
+}
+
+.activeTab{
+  width: 100%;
+  overflow-y: auto;
+}
+
+.activeTab img{
+  width: 20%;
+  position: absolute;
+  transition: all .2s ease;
+}
+
+.img_start{
+  opacity: 0;
+}
+
+.img_transform{
+  border-radius: 15px;
+  opacity: 0;
+  transform: translateY(200px);
+  cursor: pointer;
+}
+
+.img_end{
+  opacity: 1;
+  transform: translateY(0)
+}
