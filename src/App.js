@@ -39,7 +39,9 @@ useEffect(() => {
     setPhotos(content);
   });
 }, [tg])
-
+const select =(url,ids) =>{
+  null;
+}
 const addImages = (path, imgs,append=false) => {
   let columns = 2;
   if(window.innerWidth <= 600){
