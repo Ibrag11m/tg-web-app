@@ -6,6 +6,8 @@ function App() {
   const {onToggleButton, tg} = useTelegram();
 
 	const [photos,setPhotos] = useState([]);
+  const [activeTab,setActiveTab] = useState(0);
+  const [divRef,setDivRef] = useState(null);
 
 useEffect(() => {
   tg.ready();
@@ -38,7 +40,12 @@ useEffect(() => {
   return (
     <div className="App">
       <Header />
-      {photos}
+      {photos && photos.length > 0 && photos.map((x, k) => {
+        if (x.photos.length > 0)
+          return activeTab === k ? (
+            <div ref={(ref)=>k === 0 ? setDivRef(ref) : setDivRef(ref) } className={`activeTab activeTab-${k}`}><div className="my-imgs"></div></div>
+          ) : <div></div>
+      })}
       <button onclick={onToggleButton}>toggle</button>
     </div>
   );
