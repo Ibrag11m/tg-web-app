@@ -15,11 +15,11 @@ function App() {
   const [showbtn, setShowbtn] = useState(true);
   const [scrollBottom,setScrollBottom] = useState(false);
   const [scrollTops, setScrollTops] = useState(0);
+  const [xelemids, setXelemids] = useState(0);
 	const scrollBottomRef = useRef();
 	scrollBottomRef.current = scrollBottom;
   const defaultLink = "https://xx10.ru/photo2/images";
   let showbtnarr = [];
-  let xelemids = [];
   let loadings = false;
   let listedslide = true;
 
@@ -64,7 +64,7 @@ useEffect(() => {
     {
       arrs2[i].photos = photos[i].photos.slice(0, photos[i].photos.length >= 8 ? 8 : photos[i].photos.length);
       shuffle(arrs2[i].photos);
-      xelemids[i] = 1;
+      setXelemids(1);
       showbtnarr[i] = true;
     }
     console.log('arrs2');
@@ -238,8 +238,8 @@ useEffect(()=>{
 const loaded = () => {
   let tek = '';
   loadings = true;
-  xelemids[activeTab]++;
-  console.log(xelemids[activeTab]);
+  setXelemids(xelemids++);
+  console.log(xelemids);
   tek = photos[activeTab].photos.slice(xelemids[activeTab]*8-8, photos[activeTab].photos.length >= 8*xelemids[activeTab] ? 8*xelemids[activeTab] : photos[activeTab].photos.length);
   shuffle(tek);
   console.log(tek);
