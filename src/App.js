@@ -40,7 +40,7 @@ useEffect(() => {
   });
 }, [tg])
 const select =(url,ids) =>{
-  null;
+  setActiveTab(0);
 }
 const addImages = (path, imgs,append=false) => {
   let columns = 2;
