@@ -67,7 +67,7 @@ const addImages = (path, imgs,append=false) => {
   let imgs_elems = append ? showedPhotosConfigs : [];
 
   let sex = "W";
-  imgs.map(x => (
+  imgs.forEach(x => {
     if(x)
       if(path !== 'none'){
         imgs_elems.push(
@@ -86,7 +86,7 @@ const addImages = (path, imgs,append=false) => {
           }
         )
       }
-  ))
+  })
   let top = 0;
   let prevImg = append ? showedPhotos[showedPhotos.length-1] : null;
   let imgs_elements = append ? showedPhotos : [];
@@ -94,9 +94,9 @@ const addImages = (path, imgs,append=false) => {
 
   let columnsArr = new Array(columns).fill(0)
   let ik = 0;
-  imgs_elems.map((x, k) => {
+  imgs_elems.forEach((x, k) => {
       if(ik>=columns) {
-          columnsArr.map((x,k)=>{
+          columnsArr.forEach((x,k)=>{
               columnsArr[k] = x+gapBetweenHorizontal;
           })
           ik = 0;
@@ -148,7 +148,7 @@ img.addEventListener('click', function(){
   setShowedPhotos([...imgs_elements]);
   setShowedPhotosConfigs([...imgs_elems]);
 
-  imgs_elements.map((x,k)=>{
+  imgs_elements.forEach((x,k)=>{
       $(x).addClass("img_transform")
       setTimeout(()=>{
           $(x).addClass("img_end")
