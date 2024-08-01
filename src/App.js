@@ -3,6 +3,7 @@ import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import Header from './components/Header/Header';
 import $ from "jquery";
+import PropTypes from 'prop-types';
 function App() {
   const {onToggleButton, tg} = useTelegram();
 
@@ -37,13 +38,14 @@ useEffect(() => {
   }
   fetchData().then((content)=>{
     setPhotos(content);
+    let activePhotos = photos[activeTab].photos;
+    addImages(photos[activeTab].path, activePhotos);
   });
 }, [tg])
 
-useEffect(()=>{
-  let activePhotos = photos[activeTab].photos;
-  addImages(photos[activeTab].path, activePhotos);
-},[photos])
+/*useEffect(()=>{
+  
+},[photos])*/
 
 const select =(url,ids) =>{
   setActiveTab(0);
@@ -91,11 +93,10 @@ const addImages = (path, imgs,append=false) => {
         )
       }
   })
-  let blockHeight = 0;
   let top = 0;
   let prevImg = append ? showedPhotos[showedPhotos.length-1] : null;
   let imgs_elements = append ? showedPhotos : [];
-  let gap = 50;
+  //let gap = 50;
 
   let columnsArr = new Array(columns).fill(0)
   let ik = 0;
