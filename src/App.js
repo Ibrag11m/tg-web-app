@@ -209,6 +209,7 @@ useEffect(()=>{
 
 useEffect(()=>{
   $( "body" ).on( "scroll", function() {
+    console.log($("body").scrollTop());
     if($("body").scrollTop() > 0){
       setScrollTops($("body").scrollTop());
       console.log($("body").scrollTop());
