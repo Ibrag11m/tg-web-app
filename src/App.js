@@ -238,7 +238,7 @@ useEffect(()=>{
 const loaded = () => {
   let tek = '';
   loadings = true;
-  setXelemids(xelemids++);
+  setXelemids(xelemids+1);
   console.log(xelemids);
   tek = photos[activeTab].photos.slice(xelemids[activeTab]*8-8, photos[activeTab].photos.length >= 8*xelemids[activeTab] ? 8*xelemids[activeTab] : photos[activeTab].photos.length);
   shuffle(tek);
