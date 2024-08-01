@@ -18,7 +18,6 @@ useEffect(() => {
       body: JSON.stringify({type:"get", gen:1, linkhash:''})
     });
     const content = await rawResponse.json();
-    let arr = [];
     const n1 = Math.trunc(content[0].photos.length / 4) + (content[0].photos.length % 4 ? 1 : 0);
     const n2 = Math.trunc(content[1].photos.length / 4) + (content[1].photos.length % 4 ? 1 : 0);
     const n = Math.max(n1, n2);
@@ -39,6 +38,7 @@ useEffect(() => {
   return (
     <div className="App">
       <Header />
+      {photos}
       <button onclick={onToggleButton}>toggle</button>
     </div>
   );
