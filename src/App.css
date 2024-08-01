@@ -78,6 +78,7 @@ body{
   opacity: 1;
   transform: translateY(0)
 }
+
 .loadgo{
 	/*margin: 0 auto;
 	width: 80%;
@@ -90,4 +91,10 @@ body{
 	height: 52px;
 	opacity: 0;
 	transform: translateY(200px);
+}
+
+.btncheck{
+	transition: all .2s ease;
+	opacity: 1;
+	transform: translateY(0px);
 }

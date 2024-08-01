@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import Header from './components/Header/Header';
@@ -13,10 +13,14 @@ function App() {
   const [showedPhotosConfigs, setShowedPhotosConfigs] = useState([]);
   const [photos_, setPhotos_] = useState(null);
   const [showbtn, setShowbtn] = useState(true);
+  const [scrollBottom,setScrollBottom] = useState(false);
+	const scrollBottomRef = useRef();
+	scrollBottomRef.current = scrollBottom;
   const defaultLink = "https://xx10.ru/photo2/images";
   let showbtnarr = [];
   let xelemids = [];
   let loadings = false;
+  let listedslide = true;
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -202,6 +206,30 @@ useEffect(()=>{
   }
 },[photos_])
 
+useEffect(()=>{
+  $( "body" ).on( "scroll", function() {
+    if($("body").scrollTop() > 0){
+      setScrollTops($("body").scrollTop());
+    }
+    if($("body").scrollTop() + $("body").height() >= $(document).height()-30 && !loadings) {
+      if(!scrollBottomRef.current){
+        if(listedslide){
+          setScrollBottom(true);
+        }else{
+          setTimeout(()=>{
+            listedslide = true;
+            setScrollBottom(true);
+          },200)
+        }
+      }
+    }else{
+      if(scrollBottomRef.current){
+        setScrollBottom(false);
+      }
+    }
+  } );
+},[])
+
 const loaded = () => {
   let tek = '';
   loadings = true;
@@ -226,7 +254,7 @@ const loaded = () => {
           ) : <div></div>
       })}
       <div className={`app-loader ${loadings ? "" : "hidden-but"}`}><span className="loader-icon"></span></div>
-      <button onClick={loaded} className={`cst-but active loadgo`}>Загрузить еще</button>
+      <button onClick={loaded} className={`cst-but active loadgo ${scrollBottom ? "btncheck" : ""}`}>Загрузить еще</button>
     </div>
   );
 }
