@@ -237,8 +237,9 @@ useEffect(()=>{
   $( "body" ).on( "scroll", function() {
     console.log($("body").scrollTop());
   } );
-  $( ".App" ).on( "scroll", function() {
-    console.log($(".App").scrollTop());
+  $(window).scroll(function(){
+    console.log(window.scrollY);
+    console.log(window.pageYOffset);
   } );
 },[])
 
