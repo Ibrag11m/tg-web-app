@@ -39,6 +39,12 @@ useEffect(() => {
     setPhotos(content);
   });
 }, [tg])
+
+useEffect(()=>{
+  let activePhotos = photos[activeTab].photos;
+  addImages(photos[activeTab].path, activePhotos);
+},[photos])
+
 const select =(url,ids) =>{
   setActiveTab(0);
 }
@@ -67,7 +73,7 @@ const addImages = (path, imgs,append=false) => {
   let sex = "W";
   imgs.map(x => {
     if(x)
-      if(path != 'none'){
+      if(path !== 'none'){
         imgs_elems.push(
           {
             src: path ? `${defaultLink}/${sex}/${path}/${x.name}` : `${defaultLink}/${sex}/${x.name}`,
