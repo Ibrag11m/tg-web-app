@@ -268,6 +268,7 @@ const loaded = () => {
 		const formData = new FormData();
 		formData.append('photos', file);
     formData.append('gen', '1');
+    formData.append('sha', btoa(selectedurl));
 		textprogress = 'Загружаем фото...\n\Это не долго';
     setStep(1);
 		fetch("https://xx10.ru/photo2/gen_tg.php", {
