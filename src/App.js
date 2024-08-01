@@ -211,13 +211,13 @@ useEffect(()=>{
 },[window.Telegram.WebApp.viewportStableHeight])
 useEffect(()=>{
   $(window).scroll(function(){
-    console.log(window.scrollY);
     if(window.scrollY > 0){
       setScrollTops(window.scrollY);
-      console.log(window.scrollY);
     }
     if(window.scrollY + $("body").height() >= $(document).height()-30 && !loadings) {
-      console.log('good');
+      console.log(window.scrollY);
+      console.log($("body").height());
+      console.log($(document).height()-30);
       if(!scrollBottomRef.current){
         if(listedslide){
           setScrollBottom(true);
