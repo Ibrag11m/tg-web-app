@@ -39,6 +39,7 @@ useEffect(() => {
   }
   fetchData().then((content)=>{
     setPhotos(content);
+    console.log(content);
   });
 }, [tg])
 
@@ -171,6 +172,7 @@ useEffect(()=>{
       xelemids[i] = 1;
       showbtnarr[i] = true;
     }
+    console.log(arrs2);
     //arrs2[0] = arrs2[0].concat(arrs2[1]);
     setPhotos_(arrs2);
   }
