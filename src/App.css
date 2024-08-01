@@ -99,3 +99,48 @@ body{
 	opacity: 1;
 	transform: translateY(0px);
 }
+
+.step-2{
+  height: 100vh;
+  box-sizing: border-box;
+  padding-right: 40px;
+  padding-top: 70px;
+  padding-left: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.fle{
+  flex-basis: 50%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.kl-i{
+  width: 150px;
+  border-radius: 15px;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 20px;
+  max-width: 400px;
+}
+.buttons .cst-but{
+  width: 100%;
+  max-width: 100%;
+}
+
+.img-last{
+  max-height: 45vh;
+  border-radius: 15px;
+}
+

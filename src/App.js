@@ -3,6 +3,7 @@ import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import Header from './components/Header/Header';
 import $ from "jquery";
+import sad from "./img/sad.png";
 //import PropTypes from 'prop-types';
 function App() {
   const {onToggleButton, tg} = useTelegram();
@@ -16,12 +17,17 @@ function App() {
   const [scrollBottom,setScrollBottom] = useState(false);
   const [scrollTops, setScrollTops] = useState(0);
   const [xelemids, setXelemids] = useState(0);
+  const [actives, setactives] = useState(0);
+  const [step, setStep] = useState(1);
+  const [selectedurl, setSelectedurl] = useState('');
+  const [result,setPhPh]= useState(null);
 	const scrollBottomRef = useRef();
 	scrollBottomRef.current = scrollBottom;
   const defaultLink = "https://xx10.ru/photo2/images";
   let showbtnarr = [];
   let loadings = false;
   let listedslide = true;
+  let textprogress = "";
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -79,6 +85,9 @@ useEffect(() => {
 
 
 const select =(url,ids) =>{
+  setSelectedurl(url);
+  setactives(1);
+  setStep(2);
   console.log(url);
 }
 const addImages = (path, imgs,append=false) => {
@@ -254,18 +263,90 @@ const loaded = () => {
     loadings = false;
   }
 
-  return (
-    <div className="App">
-      {photos_ && photos_.length > 0 && photos_.map((x, k) => {
-        if (x.photos.length > 0)
-          return activeTab === k ? (
-            <div className={`activeTab activeTab-${k}`}><div className="my-imgs"></div></div>
-          ) : <div></div>
-      })}
-      <div className={`app-loader ${loadings ? "" : "hidden-but"}`}><span className="loader-icon"></span></div>
-      <button onClick={loaded} className={`cst-but active loadgo ${scrollBottom ? "btncheck" : ""}`}>Загрузить еще</button>
-    </div>
-  );
+  const onSelectImageHandler2 = (event) => {
+		const file = event.target.files[0];
+		const formData = new FormData();
+		formData.append('photos', file);
+    formData.append('gen', '1');
+		textprogress = 'Загружаем фото...\n\Это не долго';
+    setStep(1);
+		fetch("https://xx10.ru/photo2/gen_tg.php", {
+			method: 'POST',
+			body: formData,
+		  }).then(res=>res.json()).then((server)=> {
+			if(server.hasOwnProperty("error")){
+				setPhPh("Error");
+				setStep(4);
+			}else{
+				setPhPh(server.result);
+        setStep(3);
+			}
+		  }).catch((err) => {
+			  setPhPh("Error");
+        setStep(4);
+		  });
+	}
+
+  if(actives === 1){
+    return (
+      <div className="step-2">
+      {step === 1 &&
+          <div className="fle" style={{rowGap:40,justifyContent:"center",flexBasis:"90%"}}>
+            <span style={{maxWidth: 400,textAlign:"center",whiteSpace: 'pre-line'}} level={"2"}>
+              {textprogress}
+            </span>
+          </div>
+      }
+      {step === 2 &&
+        <div><div style={{ justifyContent: "center" }} className={"fle"}>
+            <img src={selectedurl} className={"kl-i"} />
+          </div><div className="fle" style={{ rowGap: 20, justifyContent: "flex-start" }}>
+              <span style={{ maxWidth: 400 }} level={"2"}>
+                Какое фото использовать для этого образа?
+              </span>
+              <div className="buttons">
+                <input type="file" style={{ height: 350, justifyContent: "center" }} onChange={onSelectImageHandler2} className={"cst-but active filesel"} accept="image/*,.png,.jpg,.gif,.web,.heic" />Загрузить с телефона
+              </div>
+            </div></div>
+      }
+      {step === 3 &&
+          <div><div className="fle" style={{ justifyContent: "center" }}>
+            <img src={result ? "https://xx10.ru/photo2" + result : "https://xx10.ru/photo2/images/W/1.jpeg"}
+              className={"img-last"} />
+          </div><div className="fle" style={{ rowGap: 20, justifyContent: "flex-start" }}>
+              <span style={{ maxWidth: 400 }} level={"2"}>
+                Ваш результат готов. Не забудьте показать результат друзьям!
+              </span>
+            </div></div>
+      }
+      {step === 4 &&
+          <div><div style={{ height: 150, boxSizing: "border-box", justifyContent: "center" }} className={"fle"}>
+            <img src={sad} className={"kl-i"} />
+          </div><div className="fle" style={{ rowGap: 20, justifyContent: "flex-start" }}>
+              <Title style={{ maxWidth: 400 }} level={"2"}>
+                Мы не смогли определить Ваше лицо на аватаре! Попробуйте использовать другое фото с галереи, либо обновите аватар на Вашей странице и возвращайтесь снова. Внимание! На фото должно быть 1 лицо в хорошем качестве.
+              </Title>
+              <div className="buttons">
+              <input type="file" style={{ height: 350, justifyContent: "center" }} onChange={onSelectImageHandler2} className={"cst-but active filesel"} accept="image/*,.png,.jpg,.gif,.web,.heic" />Загрузить с телефона
+              </div>
+            </div></div>
+      }
+      </div>
+    )
+
+  }
+    return (
+      <div className="App">
+        {photos_ && photos_.length > 0 && photos_.map((x, k) => {
+          if (x.photos.length > 0)
+            return activeTab === k ? (
+              <div className={`activeTab activeTab-${k}`}><div className="my-imgs"></div></div>
+            ) : <div></div>
+        })}
+        <div className={`app-loader ${loadings ? "" : "hidden-but"}`}><span className="loader-icon"></span></div>
+        <button onClick={loaded} className={`cst-but active loadgo ${scrollBottom ? "btncheck" : ""}`}>Загрузить еще</button>
+      </div>
+    );
 }
 
 export default App;
