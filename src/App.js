@@ -39,7 +39,8 @@ useEffect(() => {
   }
   fetchData().then((content)=>{
     setPhotos(content);
-    console.log('content'+content);
+    console.log('content');
+    console.log(content);
     if (photos.length > 0) {
       let arrs2 = JSON.parse(JSON.stringify(photos));
       for(let i=0;i<photos.length;i++)
@@ -49,7 +50,8 @@ useEffect(() => {
         xelemids[i] = 1;
         showbtnarr[i] = true;
       }
-      console.log('arrs2'+arrs2);
+      console.log('arrs2');
+      console.log(arrs2);
       //arrs2[0] = arrs2[0].concat(arrs2[1]);
       setPhotos_(arrs2);
     }
@@ -176,11 +178,10 @@ img.addEventListener('click', function(){
 }
 
 useEffect(()=>{
-  if(photos_.length !== 0){
-    console.log('photos_'+photos_);
+  console.log('photos_');
+  console.log(photos_);
     let activePhotos = photos_[activeTab].photos;
     addImages(photos_[activeTab].path, activePhotos);
-  }
 },[photos_])
 
 
