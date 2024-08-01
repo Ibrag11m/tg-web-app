@@ -38,14 +38,8 @@ useEffect(() => {
   }
   fetchData().then((content)=>{
     setPhotos(content);
-    let activePhotos = photos[activeTab].photos;
-    addImages(photos[activeTab].path, activePhotos);
   });
 }, [tg])
-
-/*useEffect(()=>{
-  
-},[photos])*/
 
 const select =(url,ids) =>{
   setActiveTab(0);
@@ -123,11 +117,11 @@ img.addEventListener('click', function(){
   return false;
 });
       if(prevImg){
-          let rect = prevImg.getBoundingClientRect();
+          //let rect = prevImg.getBoundingClientRect();
           let left = $(prevImg).position().left+defaultImageWidth+gapBetweenVertical;
           if(k >= columns){
-              rect = imgs_elements[k-(columns)].getBoundingClientRect();
-              let aspect = imgs_elems[k-columns].aspect;
+              //rect = imgs_elements[k-(columns)].getBoundingClientRect();
+              //let aspect = imgs_elems[k-columns].aspect;
               top = 0;
               for(let i = 1;i<1000;i++){
                   let itr = k-(columns*i);
@@ -162,9 +156,14 @@ img.addEventListener('click', function(){
   })
   let maxHg = columnsArr.max();
   top = parseInt($(imgs_elements[imgs_elements.length-1]).css("top").split("px"));
-  let height = defaultImageWidth * imgs_elems[imgs_elems.length-1].aspect;
+  //let height = defaultImageWidth * imgs_elems[imgs_elems.length-1].aspect;
   $(container).css({height:maxHg+100});
 }
+
+useEffect(()=>{
+  let activePhotos = photos[activeTab].photos;
+  addImages(photos[activeTab].path, activePhotos);
+},[photos])
 
 
   return (
