@@ -210,13 +210,13 @@ useEffect(()=>{
   console.log(window.Telegram.WebApp.viewportStableHeight)
 },[window.Telegram.WebApp.viewportStableHeight])
 useEffect(()=>{
-  $( "html" ).on( "scroll", function() {
-    console.log($("html").scrollTop());
-    if($("body").scrollTop() > 0){
-      setScrollTops($("body").scrollTop());
-      console.log($("body").scrollTop());
+  $(window).scroll(function(){
+    console.log(window.scrollY);
+    if(window.scrollY > 0){
+      setScrollTops(window.scrollY);
+      console.log(window.scrollY);
     }
-    if($("body").scrollTop() + $("body").height() >= $(document).height()-30 && !loadings) {
+    if(window.scrollY + $("body").height() >= $(document).height()-30 && !loadings) {
       console.log('good');
       if(!scrollBottomRef.current){
         if(listedslide){
@@ -233,13 +233,6 @@ useEffect(()=>{
         setScrollBottom(false);
       }
     }
-  } );
-  $( "body" ).on( "scroll", function() {
-    console.log($("body").scrollTop());
-  } );
-  $(window).scroll(function(){
-    console.log(window.scrollY);
-    console.log(window.pageYOffset);
   } );
 },[])
 
