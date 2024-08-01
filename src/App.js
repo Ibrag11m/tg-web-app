@@ -208,8 +208,8 @@ useEffect(()=>{
 },[photos_])
 
 useEffect(()=>{
-  $( "body" ).on( "scroll", function() {
-    console.log($("body").scrollTop());
+  $( "html" ).on( "scroll", function() {
+    console.log($("html").scrollTop());
     if($("body").scrollTop() > 0){
       setScrollTops($("body").scrollTop());
       console.log($("body").scrollTop());
@@ -231,6 +231,12 @@ useEffect(()=>{
         setScrollBottom(false);
       }
     }
+  } );
+  $( "body" ).on( "scroll", function() {
+    console.log($("body").scrollTop());
+  } );
+  $( ".App" ).on( "scroll", function() {
+    console.log($(".App").scrollTop());
   } );
 },[])
 
