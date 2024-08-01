@@ -15,6 +15,10 @@ function App() {
   const defaultLink = "https://xx10.ru/photo2/images";
   let showbtnarr = [];
 
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
+
 useEffect(() => {
   tg.ready();
   setActiveTab(0);
