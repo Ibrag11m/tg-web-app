@@ -312,6 +312,7 @@ const loaded = () => {
                 Какое фото использовать для этого образа?
               </span>
               <div className="buttons">
+                {photo_user}
                 <button onClick={selecttwo} className={'cst-but active'}>Свое фото с аватара</button>
                 <input type="file" style={{ height: 350, justifyContent: "center" }} onChange={onSelectImageHandler2} className={"cst-but active filesel"} accept="image/*,.png,.jpg,.gif,.web,.heic" />Загрузить с телефона
               </div>
