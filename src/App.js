@@ -3,9 +3,10 @@ import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import $ from "jquery";
 import sad from "./img/sad.png";
+import kllss from "../img/klass.png";
 //import PropTypes from 'prop-types';
 function App() {
-  const {onToggleButton, tg} = useTelegram();
+  const {onToggleButton, tg, photo_user} = useTelegram();
 
 	const [photos,setPhotos] = useState([]);
   const [activeTab,setActiveTab] = useState(0);
@@ -57,8 +58,6 @@ useEffect(() => {
   }
   fetchData().then((content)=>{
     setPhotos(content);
-    console.log('content');
-    console.log(content);
   });
 }, [tg])
 
@@ -72,10 +71,6 @@ useEffect(() => {
       setXelemids(1);
       showbtnarr[i] = true;
     }
-    console.log('arrs2');
-    console.log(arrs2);
-    console.log('xelemids');
-    console.log(xelemids);
     //arrs2[0] = arrs2[0].concat(arrs2[1]);
     setPhotos_(arrs2);
   }
@@ -276,15 +271,27 @@ const loaded = () => {
 		  }).then(res=>res.json()).then((server)=> {
 			if(server.hasOwnProperty("error")){
 				setPhPh("Error");
-				setStep(4);
+				setStep(5);
 			}else{
 				setPhPh(server.result);
         setStep(3);
 			}
 		  }).catch((err) => {
 			  setPhPh("Error");
-        setStep(4);
+        setStep(5);
 		  });
+	}
+
+  const selecttwo = () => {
+		console.log(photo_user);
+	}
+
+  const podpis = () => {
+		console.log('podpis');
+	}
+
+  const check_podpis = () => {
+		console.log('check_podpis');
 	}
 
   if(actives === 1){
@@ -305,11 +312,28 @@ const loaded = () => {
                 Какое фото использовать для этого образа?
               </span>
               <div className="buttons">
+                <button onClick={selecttwo} className={'cst-but active'}>Свое фото с аватара</button>
                 <input type="file" style={{ height: 350, justifyContent: "center" }} onChange={onSelectImageHandler2} className={"cst-but active filesel"} accept="image/*,.png,.jpg,.gif,.web,.heic" />Загрузить с телефона
               </div>
             </div></div>
       }
       {step === 3 &&
+        <div>
+          <div style={{height: 150,boxSizing:"border-box",justifyContent:"center"}} className={"fle"}>
+            <img src={kllss} className={"kl-i"}/>
+          </div>
+          <div className="fle" style={{rowGap:20,justifyContent:"flex-start"}}>
+            <Title style={{maxWidth: 400}} level={"2"}>
+              Подпишитесь на нас чтобы быть в курсе всех событий!
+            </Title>
+            <div className="buttons">
+              <button disabled={disabled1} onClick={podpis} className={'cst-but active'}>Подписаться</button>
+              <button disabled={disabled2} onClick={check_podpis} className={'cst-but active'}>Проверить подписку</button>
+            </div>
+          </div>
+        </div>
+      }
+      {step === 4 &&
           <div><div className="fle" style={{ justifyContent: "center" }}>
             <img src={result ? "https://xx10.ru/photo2" + result : "https://xx10.ru/photo2/images/W/1.jpeg"}
               className={"img-last"} />
@@ -319,7 +343,7 @@ const loaded = () => {
               </span>
             </div></div>
       }
-      {step === 4 &&
+      {step === 5 &&
           <div><div style={{ height: 150, boxSizing: "border-box", justifyContent: "center" }} className={"fle"}>
             <img src={sad} className={"kl-i"} />
           </div><div className="fle" style={{ rowGap: 20, justifyContent: "flex-start" }}>
