@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
-import Header from './components/Header/Header';
 import $ from "jquery";
 import sad from "./img/sad.png";
 //import PropTypes from 'prop-types';
