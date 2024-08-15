@@ -92,6 +92,7 @@ body{
 	height: 52px;
 	opacity: 0;
 	transform: translateY(200px);
+  border-radius: 8px;
 }
 
 .btncheck{
