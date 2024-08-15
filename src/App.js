@@ -3,7 +3,7 @@ import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import $ from "jquery";
 import sad from "./img/sad.png";
-import kllss from "../img/klass.png";
+import kllss from "./img/klass.png";
 //import PropTypes from 'prop-types';
 function App() {
   const {onToggleButton, tg, photo_user} = useTelegram();
