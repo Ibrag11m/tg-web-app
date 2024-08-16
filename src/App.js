@@ -22,6 +22,8 @@ function App() {
   const [selectedurl, setSelectedurl] = useState('');
   const [result,setPhPh]= useState(null);
 	const scrollBottomRef = useRef();
+  const [disabled1, setDisabled1] = useState(false);
+	const [disabled2, setDisabled2] = useState(false);
 	scrollBottomRef.current = scrollBottom;
   const defaultLink = "https://xx10.ru/photo2/images";
   let showbtnarr = [];
