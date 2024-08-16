@@ -322,9 +322,9 @@ const loaded = () => {
             <img src={kllss} className={"kl-i"}/>
           </div>
           <div className="fle" style={{rowGap:20,justifyContent:"flex-start"}}>
-            <Title style={{maxWidth: 400}} level={"2"}>
+            <span style={{maxWidth: 400}} level={"2"}>
               Подпишитесь на нас чтобы быть в курсе всех событий!
-            </Title>
+            </span>
             <div className="buttons">
               <button disabled={disabled1} onClick={podpis} className={'cst-but active'}>Подписаться</button>
               <button disabled={disabled2} onClick={check_podpis} className={'cst-but active'}>Проверить подписку</button>
