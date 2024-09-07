@@ -44,8 +44,8 @@ const App = () => {
   let listedslide = true;
   let textprogress = "";
 
-  const [userAvatar, setUserAvatar] = useState<null | string>(null);
-  const [user, setUser] = useState<null | I_User>(null);
+  const [userAvatar, setUserAvatar] = useState(null);
+  const [user, setUser] = useState(null);
 
   const GetUserAvatar = async () => {
     try {
