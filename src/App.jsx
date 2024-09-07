@@ -5,7 +5,20 @@ import $ from "jquery";
 import sad from "./img/sad.png";
 import kllss from "./img/klass.png";
 //import PropTypes from 'prop-types';
-function App() {
+const LINK_FOR_TG = "https://t.me/share/url?url=";
+const LINK = "https://t.me/moy_obraz";
+const CHANEL_ID = "@2174344935";
+const BACKEND_URL = "https://xs9.ru";
+
+/*interface I_User {
+  allows_write_to_pm: boolean,
+  first_name: string,
+  id: number, 
+  language_code: string,
+  last_name: string,
+  username: string,
+};*/
+const App = () => {
   const {onToggleButton, tg, photo_user} = useTelegram();
 
 	const [photos,setPhotos] = useState([]);
@@ -30,6 +43,33 @@ function App() {
   let loadings = false;
   let listedslide = true;
   let textprogress = "";
+
+  const [userAvatar, setUserAvatar] = useState<null | string>(null);
+  const [user, setUser] = useState<null | I_User>(null);
+
+  const GetUserAvatar = async () => {
+    try {
+      const id = user?.id;
+      
+      const resp = await fetch(
+        `${BACKEND_URL}/api/user_avatar?user_id=${id}`,
+      );
+      const data = await resp.json();
+
+      if(data.status === "success") setUserAvatar(data.photo_url);
+    } catch(e) {
+      console.error(e);
+      alert("Произошла ошибка, при получении аватарки пользователя");
+    };
+  };
+
+  const Share = () => {
+    window.open(
+      `${LINK_FOR_TG}${LINK}`, 
+      "_blank",
+    );
+  };
+  
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -217,6 +257,7 @@ useEffect(()=>{
   console.log(window.Telegram.WebApp.viewportStableHeight)
 },[window.Telegram.WebApp.viewportStableHeight])
 useEffect(()=>{
+  setUser(window.Telegram.WebApp.initDataUnsafe.user);
   $(window).scroll(function(){
     if(window.scrollY > 0){
       setScrollTops(window.scrollY);
@@ -239,6 +280,10 @@ useEffect(()=>{
     }
   } );
 },[])
+
+useEffect(() => {
+  GetUserAvatar();
+}, [user]);
 
 const loaded = () => {
   let tek = [];
@@ -289,11 +334,27 @@ const loaded = () => {
 	}
 
   const podpis = () => {
-		console.log('podpis');
+    window.open(
+      LINK, 
+      "_blank",
+    );
 	}
 
-  const check_podpis = () => {
-		console.log('check_podpis');
+  const check_podpis = async () => {
+		try {
+      const id = user?.id;
+      const resp = await fetch(
+        `${BACKEND_URL}/api/check_subscribe?user_id=${id}&chat_id=${CHANEL_ID}`,
+      );
+      const data = await resp.json();
+
+      if(data.status !== "success") throw new Error(data.msg);
+      else if(data.is_subscribe) alert("Подписан");
+      else alert("Не подписан");
+    } catch(e) {
+      console.error(e);
+      alert("Произошла ошибка, при проверке подписки на канал");
+    };
 	}
 
   if(actives === 1){
