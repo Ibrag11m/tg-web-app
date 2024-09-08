@@ -15,8 +15,8 @@ interface I_User {
 };
 
 const App = () => {
-  const [userAvatar, setUserAvatar] = useState<null | string>(null);
-  const [user, setUser] = useState<null | I_User>(null);
+  const [userAvatar, setUserAvatar] = useState(null);
+  const [user, setUser] = useState(null);
   
   const GetUserAvatar = async () => {
     try {
