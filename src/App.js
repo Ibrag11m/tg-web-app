@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const LINK_FOR_TG = "https://t.me/share/url?url=";
 const LINK = "https://t.me/moy_obraz";
-const CHANEL_ID = "@2174344935";
+const CHANEL_ID = "@moy_obraz";
 const BACKEND_URL = "https://65b1e460ac6878b24552d09cd0d265f7.serveo.net";
 
 const App = () => {
