@@ -3,16 +3,7 @@ import { useEffect, useState } from "react";
 const LINK_FOR_TG = "https://t.me/share/url?url=";
 const LINK = "https://t.me/moy_obraz";
 const CHANEL_ID = "@2174344935";
-const BACKEND_URL = "https://xs9.ru";
-
-interface I_User {
-  allows_write_to_pm: boolean,
-  first_name: string,
-  id: number, 
-  language_code: string,
-  last_name: string,
-  username: string,
-};
+const BACKEND_URL = "https://2ea1305739d9289e4f3e53d69f1b0ea8.serveo.net/";
 
 const App = () => {
   const [userAvatar, setUserAvatar] = useState(null);
@@ -67,7 +58,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // @ts-ignore
     setUser(window.Telegram.WebApp.initDataUnsafe.user);
   }, []);
 
