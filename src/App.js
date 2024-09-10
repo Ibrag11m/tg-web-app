@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const LINK_FOR_TG = "https://t.me/share/url?url=";
 const LINK = "https://t.me/moy_obraz";
 const CHANEL_ID = "@2174344935";
-const BACKEND_URL = "https://2ea1305739d9289e4f3e53d69f1b0ea8.serveo.net/";
+const BACKEND_URL = "https://65b1e460ac6878b24552d09cd0d265f7.serveo.net";
 
 const App = () => {
   const [userAvatar, setUserAvatar] = useState(null);
