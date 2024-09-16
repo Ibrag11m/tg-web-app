@@ -49,6 +49,8 @@ const App = () => {
       const data = await resp.json();
 
       if(data.status === "success") setUserAvatar(data.photo_url);
+      console.log('useravatar');
+      console.log(data);
     } catch(e) {
       console.error(e);
       alert("Произошла ошибка, при получении аватарки пользователя");
@@ -275,6 +277,7 @@ useEffect(()=>{
 
 useEffect(() => {
   GetUserAvatar();
+  console.log(user);
 }, [user]);
 
 const loaded = () => {
@@ -355,7 +358,8 @@ const loaded = () => {
       {step === 1 &&
           <div className="fle" style={{rowGap:40,justifyContent:"center",flexBasis:"90%"}}>
             <span style={{maxWidth: 400,textAlign:"center",whiteSpace: 'pre-line'}} level={"2"}>
-              Загружаем фото...\n\Это не долго
+              Загружаем фото...
+              Это не долго
             </span>
           </div>
       }
