@@ -4,6 +4,8 @@ import { useTelegram } from './hooks/useTelegram';
 import $ from "jquery";
 import sad from "./img/sad.png";
 import kllss from "./img/klass.png";
+import loadimg from "./img/loadimg.gif";
+
 //import PropTypes from 'prop-types';
 const LINK_FOR_TG = "https://t.me/share/url?url=";
 const LINK = "https://t.me/moy_obraz";
@@ -53,7 +55,7 @@ const App = () => {
       console.log(data);
     } catch(e) {
       console.error(e);
-      alert("Произошла ошибка, при получении аватарки пользователя");
+      //alert("Произошла ошибка, при получении аватарки пользователя");
     };
   };
 
@@ -305,7 +307,7 @@ const loaded = () => {
 		formData.append('photos', file);
     formData.append('gen', '1');
     formData.append('sha', btoa(selectedurl));
-		textprogress = 'Загружаем фото...\n\Это не долго';
+		textprogress = 'Загружаем фото... Это не долго';
     setStep(1);
 		fetch("https://xx10.ru/photo2/gen_tg.php", {
 			method: 'POST',
@@ -322,10 +324,6 @@ const loaded = () => {
 			  setPhPh("Error");
         setStep(5);
 		  });
-	}
-
-  const selecttwo = () => {
-		console.log(photo_user);
 	}
 
   const podpis = () => {
@@ -357,6 +355,7 @@ const loaded = () => {
       <div className="step-2">
       {step === 1 &&
           <div className="fle" style={{rowGap:40,justifyContent:"center",flexBasis:"90%"}}>
+            <img src={loadimg} className={"kl-i"} />
             <span style={{maxWidth: 400,textAlign:"center",whiteSpace: 'pre-line'}} level={"2"}>
               Загружаем фото...
               Это не долго
@@ -392,8 +391,8 @@ const loaded = () => {
               Подпишитесь на нас чтобы быть в курсе всех событий!
             </span>
             <div className="buttons">
-              <button disabled={disabled1} onClick={podpis} className={'cst-but active'}>Подписаться</button>
-              <button disabled={disabled2} onClick={check_podpis} className={'cst-but active'}>Проверить подписку</button>
+              <button disabled={disabled1} onClick={podpis} className={'cst-but active podpispbt'}>Подписаться</button>
+              <button disabled={disabled2} onClick={check_podpis} className={'cst-but active podpispbt'}>Проверить подписку</button>
             </div>
           </div>
         </div>
@@ -406,18 +405,24 @@ const loaded = () => {
               <span style={{ maxWidth: 400 }} level={"2"}>
                 Ваш результат готов. Не забудьте показать результат друзьям!
               </span>
+              <button disabled={disabled1} onClick={Share} className={'cst-but active podpispbt'}>Поделиться с друзьями</button>
             </div></div>
       }
       {step === 5 &&
           <div><div style={{ height: 150, boxSizing: "border-box", justifyContent: "center" }} className={"fle"}>
             <img src={sad} className={"kl-i"} />
           </div><div className="fle" style={{ rowGap: 20, justifyContent: "flex-start" }}>
-              <Title style={{ maxWidth: 400 }} level={"2"}>
+              <span style={{ maxWidth: 400 }} level={"2"}>
                 Мы не смогли определить Ваше лицо на аватаре! Попробуйте использовать другое фото с галереи, либо обновите аватар на Вашей странице и возвращайтесь снова. Внимание! На фото должно быть 1 лицо в хорошем качестве.
-              </Title>
+              </span>
               <div className="buttons">
-              <input type="file" style={{ height: 350, justifyContent: "center" }} onChange={onSelectImageHandler2} className={"cst-but active filesel"} accept="image/*,.png,.jpg,.gif,.web,.heic" />Загрузить с телефона
-              </div>
+                <div class="input__wrapper">
+                  <input name="file" type="file" id="input__file" class="input input__file" onChange={onSelectImageHandler2}  accept="image/*,.png,.jpg,.gif,.web,.heic"/>
+                  <label for="input__file" class="input__file-button">
+                      <span class="input__file-button-text">Загрузить с телефона</span>
+                  </label>
+                </div>
+                </div>
             </div></div>
       }
       </div>
