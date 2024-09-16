@@ -366,20 +366,21 @@ const loaded = () => {
       {step === 2 &&
         <div><div style={{ justifyContent: "center" }} className={"fle"}>
             <img src={selectedurl} className={"kl-i"} />
-          </div><div className="fle" style={{ rowGap: 20, justifyContent: "flex-start" }}>
+          </div>
+            <div className="fle" style={{ rowGap: 20, justifyContent: "flex-start" }}>
               <span style={{ maxWidth: 400 }} level={"2"}>
                 Какое фото использовать для этого образа?
               </span>
               <div className="buttons">
-              <div class="input__wrapper">
-                <input name="file" type="file" id="input__file" class="input input__file" onChange={onSelectImageHandler2}  accept="image/*,.png,.jpg,.gif,.web,.heic"/>
-                <label for="input__file" class="input__file-button">
-                    <span class="input__file-button-text">Загрузить с телефона</span>
-                </label>
+                <div class="input__wrapper">
+                  <input name="file" type="file" id="input__file" class="input input__file" onChange={onSelectImageHandler2}  accept="image/*,.png,.jpg,.gif,.web,.heic"/>
+                  <label for="input__file" class="input__file-button">
+                      <span class="input__file-button-text">Загрузить с телефона</span>
+                  </label>
+                </div>
               </div>
-                //<input type="file" style={{ height: 350, justifyContent: "center" }} onChange={onSelectImageHandler2} className={"cst-but active filesel"} accept="image/*,.png,.jpg,.gif,.web,.heic" />Загрузить с телефона
-              </div>
-            </div></div>
+            </div>
+          </div>
       }
       {step === 3 &&
         <div>

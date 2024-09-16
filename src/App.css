@@ -172,7 +172,7 @@ body{
   width: 100%;
   max-width: 290px;
   height: 60px;
-  background: #437efd;
+  background: #F4BC3C;
   color: #fff;
   font-size: 1.125rem;
   font-weight: 700;
@@ -180,12 +180,12 @@ body{
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
+      -ms-flex-align: center; 
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  border-radius: 3px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 8px;
   cursor: pointer;
   margin: 0 auto;
 }
