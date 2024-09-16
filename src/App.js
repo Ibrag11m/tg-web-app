@@ -371,7 +371,13 @@ const loaded = () => {
                 Какое фото использовать для этого образа?
               </span>
               <div className="buttons">
-                <input type="file" style={{ height: 350, justifyContent: "center" }} onChange={onSelectImageHandler2} className={"cst-but active filesel"} accept="image/*,.png,.jpg,.gif,.web,.heic" />Загрузить с телефона
+              <div class="input__wrapper">
+                <input name="file" type="file" id="input__file" class="input input__file" onChange={onSelectImageHandler2}  accept="image/*,.png,.jpg,.gif,.web,.heic"/>
+                <label for="input__file" class="input__file-button">
+                    <span class="input__file-button-text">Загрузить с телефона</span>
+                </label>
+              </div>
+                //<input type="file" style={{ height: 350, justifyContent: "center" }} onChange={onSelectImageHandler2} className={"cst-but active filesel"} accept="image/*,.png,.jpg,.gif,.web,.heic" />Загрузить с телефона
               </div>
             </div></div>
       }
