@@ -342,8 +342,8 @@ const loaded = () => {
       const data = await resp.json();
 
       if(data.status !== "success") throw new Error(data.msg);
-      else if(data.is_subscribe) alert("Подписан");
-      else alert("Не подписан");
+      else if(data.is_subscribe) setStep(4);
+      else alert("Пожалуйста, подпишитесь на канал чтобы продолжить");
     } catch(e) {
       console.error(e);
       alert("Произошла ошибка, при проверке подписки на канал");
@@ -413,7 +413,7 @@ const loaded = () => {
             <img src={sad} className={"kl-i"} />
           </div><div className="fle" style={{ rowGap: 20, justifyContent: "flex-start" }}>
               <span style={{ maxWidth: 400 }} level={"2"}>
-                Мы не смогли определить Ваше лицо на аватаре! Попробуйте использовать другое фото с галереи, либо обновите аватар на Вашей странице и возвращайтесь снова. Внимание! На фото должно быть 1 лицо в хорошем качестве.
+                Мы не смогли определить Ваше лицо на фото! Попробуйте использовать другое фото с галереи. Внимание! На фото должно быть 1 лицо в хорошем качестве.
               </span>
               <div className="buttons">
                 <div class="input__wrapper">
