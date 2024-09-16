@@ -11,6 +11,7 @@ const LINK_FOR_TG = "https://t.me/share/url?url=";
 const LINK = "https://t.me/moy_obraz";
 const CHANEL_ID = "@moy_obraz";
 const BACKEND_URL = "https://xs9.ru";
+const LINK_FOR_APP = "https://t.me/my_vot_photo_bot";
 
 const App = () => {
   const {onToggleButton, tg, photo_user} = useTelegram();
@@ -51,8 +52,6 @@ const App = () => {
       const data = await resp.json();
 
       if(data.status === "success") setUserAvatar(data.photo_url);
-      console.log('useravatar');
-      console.log(data);
     } catch(e) {
       console.error(e);
       //alert("Произошла ошибка, при получении аватарки пользователя");
@@ -61,7 +60,7 @@ const App = () => {
 
   const Share = () => {
     window.open(
-      `${LINK_FOR_TG}${LINK}`, 
+      `${LINK_FOR_TG}${LINK_FOR_APP}`, 
       "_blank",
     );
   };
@@ -120,7 +119,6 @@ const select =(url,ids) =>{
   setSelectedurl(url);
   setactives(1);
   setStep(2);
-  console.log(url);
 }
 const addImages = (path, imgs,append=false) => {
   let columns = 2;
@@ -243,15 +241,13 @@ Array.prototype.max = function() {
 
 useEffect(()=>{
   if(photos_ !== null){
-    console.log('photos_');
-    console.log(photos_);
       let activePhotos = photos_[activeTab].photos;
       addImages(photos_[activeTab].path, activePhotos);
   }
 },[photos_])
-useEffect(()=>{
+/*useEffect(()=>{
   console.log(window.Telegram.WebApp.viewportStableHeight)
-},[window.Telegram.WebApp.viewportStableHeight])
+},[window.Telegram.WebApp.viewportStableHeight])*/
 useEffect(()=>{
   setUser(window.Telegram.WebApp.initDataUnsafe.user);
   $(window).scroll(function(){
@@ -279,7 +275,6 @@ useEffect(()=>{
 
 useEffect(() => {
   GetUserAvatar();
-  console.log(user);
 }, [user]);
 
 const loaded = () => {
@@ -287,10 +282,8 @@ const loaded = () => {
   loadings = true;
   let xelemidss = xelemids+1;
   setXelemids(xelemidss);
-  console.log(xelemidss);
   tek = photos[activeTab].photos.slice(xelemidss*8-8, photos[activeTab].photos.length >= 8*xelemidss ? 8*xelemidss : photos[activeTab].photos.length);
   shuffle(tek);
-  console.log(tek);
   photos_[activeTab].photos = [...photos_[activeTab].photos, ...tek];
   addImages(photos[activeTab].path,tek,true);
     if(photos_[activeTab].photos.length < 8 * xelemidss) {
